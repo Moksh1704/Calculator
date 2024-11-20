@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        body{
+            background-color:#272629;
+            display: flex;
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh; 
+        
+        }
+        .display {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            box-sizing: border-box;
+            align-items: end;
+            border-radius: 5px;
+            height: 75px;
+            background-color: #ffffff;
+            color:black;
+            font-size: 2em; 
+            text-align: end;
+        }
+
+        .calci {
+            height:500px;
+            width: 400px;
+            padding: 12px;
+            font: bolder;
+            border-radius: 25px;
+            background-color:#35323b;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+        }
+
+        input[type=text] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+           border:none;
+            align-items: end;
+            border-radius: 20px;
+            height: 75px;
+            background-color:#918e97;
+            
+        }
+
+        input::placeholder {
+            color: #000000;
+            text-align: end;
+            font-size: 1.5em;
+        }
+
+        .button {
+            width: 75px;
+            padding: 10px;
+            margin: 10px 0;
+            border:none;
+            border-radius: 15px;
+            font-weight: 700;
+            background-color: #a099ac;
+            color: black;
+            height: 50px;
+            font-size: larger;
+            
+           
+        }
+
+        .operator {
+            width: 75px;
+            padding: 10px;
+            margin: 10px 0;
+            border:none;
+            border-radius: 15px;
+            background-color: #544d61;
+            color: white;
+            font-weight: 500;
+            font-family:'Times New Roman', Times, serif;
+            height:50px;
+            font-size: larger;
+        }
+
+        .enter {
+            width: 150px;;
+            padding: 10px;
+            margin: 10px 0;
+           border:none;
+            border-radius: 15px;
+            background-color:#1f1d24;
+            color: white;
+            height: 50px;
+            font-size: larger;
+        }
+
+
+    </style>
+</head>
+<body>
+<div class="calci">
+    <input type="text" id="display" class="display" placeholder="0"><br>
+    <br>
+
+    <div>
+        <input type="button" class="operator" value="(" onclick="appendToDisplay(this.value)">
+        <input type="button" class="operator" value=")" onclick="appendToDisplay(this.value)">
+        <input type="button" class="operator" value="ans" onclick="calculateAns()">
+        <input type="button" class="operator" value="del" onclick="deleteLast()">
+        <input type="button" class="operator" value="clear" onclick="clearDisplay()">
+    </div>
+    
+    <div>
+        <input type="button" value="7" class="button" onclick="appendToDisplay(this.value)">
+        <input type="button" value="8" class="button" onclick="appendToDisplay(this.value)">
+        <input type="button" value="9" class="button" onclick="appendToDisplay(this.value)">
+        <input type="button" value="%" class="operator" onclick="appendToDisplay(this.value)">
+        <input type="button" value="^" class="operator" onclick="appendToDisplay('^')">
+    </div>
+    
+    <div>
+        <input type="button" value="4" class="button" onclick="appendToDisplay(this.value)">
+        <input type="button" value="5" class="button" onclick="appendToDisplay(this.value)">
+        <input type="button" value="6" class="button" onclick="appendToDisplay(this.value)">
+        <input type="button" value="*" class="operator" onclick="appendToDisplay('*')">
+        <input type="button" value="/" class="operator" onclick="appendToDisplay('/')">
+    </div>
+    
+    <div>
+        <input type="button" value="1" class="button" onclick="appendToDisplay(this.value)">
+        <input type="button" value="2" class="button" onclick="appendToDisplay(this.value)">
+        <input type="button" value="3" class="button" onclick="appendToDisplay(this.value)">
+        <input type="button" value="+" class="operator" onclick="appendToDisplay(this.value)">
+        <input type="button" value="-" class="operator" onclick="appendToDisplay(this.value)">
+    </div>
+    
+    <div>
+        <input type="button" value="." class="operator" onclick="appendToDisplay(this.value)">
+        <input type="button" value="0" class="button" onclick="appendToDisplay(this.value)">
+        <input type="button" value="+/-" class="operator" onclick="toggleSign()">
+        <input type="button" value="Enter" class="enter" onclick="calculate()">
+    
+    </div>
+</div>
+
+<script>
+    function appendToDisplay(value) {
+        document.getElementById("display").value += value;
+    }
+
+    function deleteLast() {
+        var display = document.getElementById("display");
+        display.value = display.value.slice(0, -1);
+    }
+
+    function clearDisplay() {
+        document.getElementById("display").value = "";
+    }
+
+    function toggleSign() {
+        var display = document.getElementById("display");
+        if (display.value[0] === '-') {
+            display.value = display.value.slice(1);
+        } else {
+            display.value = '-' + display.value;
+        }
+    }
+
+    function calculateAns() {
+        // Implement calculation using the previous answer
+        // Example: document.getElementById("display").value = ans;
+    }
+
+    function calculate() {
+        var display = document.getElementById("display");
+        var result = eval(display.value);
+        document.getElementById("display").value = result;
+    }
+</script>
+</body>
+</html>
